@@ -56,19 +56,13 @@ class CartWidget extends StatefulWidget {
 }
 
 class _CartWidgetState extends State<CartWidget> {
-  int value;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
 
-  }
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    var bloc = Provider.of<HomeBloc>(context,listen: false);
-    bloc.getShoppingCartInfo();
+    var blocDid = Provider.of<HomeBloc>(context);
+    blocDid.getShoppingCartInfo();
   }
 
   @override
@@ -90,6 +84,7 @@ class _CartWidgetState extends State<CartWidget> {
               }
 
               var cart = data as ShoppingCart;
+
               //print(cart.total);
               return GestureDetector(
                 onTap: (){

@@ -47,11 +47,11 @@ class ShoppingCartContainer extends StatefulWidget {
 }
 
 class _ShoppingCartContainerState extends State<ShoppingCartContainer> {
-  handleEvent(BaseEvent event){
+  @override
+
+   handleEvent(BaseEvent event) async {
     if(event is ShouldPopEvent){
-
       Navigator.pop(context);
-
     }
   }
 
@@ -82,6 +82,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
   void initState() {
     super.initState();
     widget.bloc.getOrderDetail();
+
     //print(widget.bloc.getOrderDetail());
   }
   @override
@@ -96,7 +97,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
         builder: (context,data,child){
           if(data == null){
             return Center(
-              child: Container(),
+              child: CircularProgressIndicator(),
             );
           }
           if(data is RestError){
@@ -115,8 +116,6 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 ConfirmInfoWidget(data.total),
               ],
             );
-          }else{
-            return CircularProgressIndicator();
           }
           return Container();
         },
@@ -162,6 +161,7 @@ class ConfirmInfoWidget extends StatelessWidget {
               NormalButton(
                 title: 'Confirm',
                 onPressed: () {
+
                   bloc.event.add(ConfirmOrderEvent());
                 },
               ),
