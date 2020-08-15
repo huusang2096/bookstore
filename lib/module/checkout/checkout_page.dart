@@ -10,6 +10,7 @@ import 'package:flutterappbookstore/event/confirm_order_event.dart';
 import 'package:flutterappbookstore/event/pop_event.dart';
 import 'package:flutterappbookstore/event/update_cart_event.dart';
 import 'package:flutterappbookstore/module/checkout/checkout_bloc.dart';
+import 'package:flutterappbookstore/module/home/home_page.dart';
 import 'package:flutterappbookstore/shared/app_color.dart';
 import 'package:flutterappbookstore/shared/model/order.dart';
 import 'package:flutterappbookstore/shared/model/product.dart';
@@ -47,13 +48,14 @@ class ShoppingCartContainer extends StatefulWidget {
 }
 
 class _ShoppingCartContainerState extends State<ShoppingCartContainer> {
-  @override
 
-   handleEvent(BaseEvent event) async {
-    if(event is ShouldPopEvent){
-      Navigator.pop(context);
+   handleEvent(BaseEvent event){
+      setState(() {
+        if(event is ShouldPopEvent){
+          Navigator.pop(context,false);
+        }
+      });
     }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,6 @@ class _ShoppingCartState extends State<ShoppingCart> {
   void initState() {
     super.initState();
     widget.bloc.getOrderDetail();
-
     //print(widget.bloc.getOrderDetail());
   }
   @override

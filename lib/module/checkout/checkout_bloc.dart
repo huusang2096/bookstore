@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutterappbookstore/base/base_bloc.dart';
 import 'package:flutterappbookstore/base/base_event.dart';
@@ -40,8 +41,6 @@ class CheckoutBloc extends BaseBloc with ChangeNotifier{
           orderSink.add(order);
         }
     );
-
-
   }
 
   handleConfirmOrder(event){

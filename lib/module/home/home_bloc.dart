@@ -59,7 +59,7 @@ class HomeBloc extends BaseBloc with ChangeNotifier{
 
   getShoppingCartInfo(){
     Stream<ShoppingCart>.fromFuture(
-      _orderRepo.getShoppingCartInfo()
+      _orderRepo.getShoppingCartInfo(),
     ).listen((shoppingCarts) {
       _shoppingCart = shoppingCarts;
       shoppingCartSink.add(shoppingCarts);
